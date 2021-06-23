@@ -27,7 +27,7 @@ export default function ({ getService, getPageObjects }) {
       await PageObjects.context.navigateTo(TEST_INDEX_PATTERN, TEST_ANCHOR_ID);
     });
 
-    it('should default to the `context:defaultSize` setting', async function () {
+    it.only('should default to the `context:defaultSize` setting', async function () {
       await retry.waitFor(
         `number of rows displayed initially is ${expectedRowLength}`,
         async function () {
