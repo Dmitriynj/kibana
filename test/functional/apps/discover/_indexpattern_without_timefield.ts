@@ -17,7 +17,7 @@ export default function ({ getService, getPageObjects }: FtrProviderContext) {
   const testSubjects = getService('testSubjects');
   const PageObjects = getPageObjects(['common', 'timePicker', 'discover']);
 
-  describe('indexpattern without timefield', () => {
+  describe.only('indexpattern without timefield', () => {
     before(async () => {
       await security.testUser.setRoles(['kibana_admin', 'kibana_timefield']);
       await esArchiver.loadIfNeeded(
