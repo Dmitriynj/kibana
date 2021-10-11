@@ -13,7 +13,7 @@ export default function ({ getService, getPageObjects }: FtrProviderContext) {
   const PageObjects = getPageObjects(['common', 'discover', 'spaceSelector', 'header']);
   const globalNav = getService('globalNav');
 
-  describe('preserve url', function () {
+  describe.only('preserve url', function () {
     before(async function () {
       await esArchiver.load('x-pack/test/functional/es_archives/spaces/multi_space');
     });
