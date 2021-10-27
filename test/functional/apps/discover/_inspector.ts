@@ -31,7 +31,7 @@ export default function ({ getService, getPageObjects }: FtrProviderContext) {
     return hitsCountStatsRow[STATS_ROW_VALUE_INDEX];
   }
 
-  describe('inspect', () => {
+  describe.only('inspect', () => {
     before(async () => {
       await kibanaServer.savedObjects.clean({ types: ['search', 'index-pattern'] });
 
