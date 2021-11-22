@@ -14,7 +14,7 @@ export default function ({ getService, getPageObjects }: PluginFunctionalProvide
   const find = getService('find');
   const PageObjects = getPageObjects(['common', 'discover', 'timePicker']);
 
-  describe('custom doc views', function () {
+  describe.only('custom doc views', function () {
     before(async () => {
       await PageObjects.common.navigateToApp('discover');
       await PageObjects.timePicker.setDefaultAbsoluteRange();

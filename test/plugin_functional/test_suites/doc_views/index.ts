@@ -12,7 +12,7 @@ export default function ({ getService, loadTestFile }: PluginFunctionalProviderC
   const esArchiver = getService('esArchiver');
 
   // SKIPPED: https://github.com/elastic/kibana/issues/100060
-  describe.skip('doc views', function () {
+  describe('doc views', function () {
     before(async () => {
       await esArchiver.loadIfNeeded('test/functional/fixtures/es_archiver/discover');
     });
