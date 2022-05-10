@@ -17,7 +17,7 @@ import {
   ThresholdExpression,
   ValueExpression,
 } from '@kbn/triggers-actions-ui-plugin/public';
-import { SearchBar } from '@kbn/unified-search-plugin/public';
+import { SearchBar, SearchBarProps } from '@kbn/unified-search-plugin/public';
 import { mapAndFlattenFilters, SavedQuery, TimeHistory } from '@kbn/data-plugin/public';
 import { Storage } from '@kbn/kibana-utils-plugin/public';
 import { DataViewOption, EsQueryAlertParams, SearchType } from '../types';
@@ -62,6 +62,8 @@ const withDebounce = debounce((execute: () => void) => execute(), 500, {
   leading: false,
   trailing: true,
 });
+
+const HIDDEN_FILTER_PANEL_OPTIONS: SearchBarProps['hiddenFilterPanelOptions'] = ['pinFilter'];
 
 export const SearchSourceExpressionForm = (props: SearchSourceExpressionFormProps) => {
   const { data } = useTriggersAndActionsUiDeps();
@@ -173,6 +175,7 @@ export const SearchSourceExpressionForm = (props: SearchSourceExpressionFormProp
         onQueryChange={onChangeQuery}
         savedQuery={savedQuery}
         filters={filters}
+        hiddenFilterPanelOptions={HIDDEN_FILTER_PANEL_OPTIONS}
         onFiltersUpdated={onUpdateFilters}
         onClearSavedQuery={onClearSavedQuery}
         onSavedQueryUpdated={onSavedQueryUpdated}
@@ -182,7 +185,7 @@ export const SearchSourceExpressionForm = (props: SearchSourceExpressionFormProp
         showFilterBar={true}
         showDatePicker={false}
         showAutoRefreshOnly={false}
-        customSubmitButton={<></>}
+        showSubmitButton={false}
         dateRangeFrom={undefined}
         dateRangeTo={undefined}
         timeHistory={timeHistory}
