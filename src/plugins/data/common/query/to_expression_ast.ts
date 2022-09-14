@@ -60,19 +60,10 @@ export async function queryStateToExpressionAst({
     if (mode === 'sql' && 'sql' in query) {
       const idxPattern = getIndexPatternFromSQLQuery(query.sql);
       const idsTitles = await dataViewsService.getIdsWithTitle();
+      const dataViewIdTitle = idsTitles.find(({ title }) => title === idxPattern);
 
-      let dataViewId = idsTitles.find(({ title }) => title === idxPattern)?.id;
-
-      // use ad-hoc data view if exists
-      if (!dataViewId) {
-        const adHocDataView = adHocDataViews.find(({ title }) => title === idxPattern);
-        if (adHocDataView) {
-          dataViewId = adHocDataView.id;
-        }
-      }
-
-      if (dataViewId) {
-        const dataView = await dataViewsService.get(dataViewId);
+      if (dataViewIdTitle) {
+        const dataView = await dataViewsService.get(dataViewIdTitle.id);
         const timeFieldName = dataView.timeFieldName;
         const essql = aggregateQueryToAst(query, timeFieldName);
 
